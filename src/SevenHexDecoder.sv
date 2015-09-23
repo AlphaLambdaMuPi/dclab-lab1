@@ -1,5 +1,6 @@
 module SevenHexDecoder(
 	input [3:0] i_hex,
+  input i_on,
 	output logic [6:0] o_seven_ten,
 	output logic [6:0] o_seven_one
 );
@@ -21,23 +22,29 @@ module SevenHexDecoder(
 	parameter D8 = 7'b0000000;
 	parameter D9 = 7'b0010000;
 	always_comb begin
-		case(i_hex)
-			4'h0: begin o_seven_ten = D0; o_seven_one = D0; end
-			4'h1: begin o_seven_ten = D0; o_seven_one = D1; end
-			4'h2: begin o_seven_ten = D0; o_seven_one = D2; end
-			4'h3: begin o_seven_ten = D0; o_seven_one = D3; end
-			4'h4: begin o_seven_ten = D0; o_seven_one = D4; end
-			4'h5: begin o_seven_ten = D0; o_seven_one = D5; end
-			4'h6: begin o_seven_ten = D0; o_seven_one = D6; end
-			4'h7: begin o_seven_ten = D0; o_seven_one = D7; end
-			4'h8: begin o_seven_ten = D0; o_seven_one = D8; end
-			4'h9: begin o_seven_ten = D0; o_seven_one = D9; end
-			4'ha: begin o_seven_ten = D1; o_seven_one = D0; end
-			4'hb: begin o_seven_ten = D1; o_seven_one = D1; end
-			4'hc: begin o_seven_ten = D1; o_seven_one = D2; end
-			4'hd: begin o_seven_ten = D1; o_seven_one = D3; end
-			4'he: begin o_seven_ten = D1; o_seven_one = D4; end
-			4'hf: begin o_seven_ten = D1; o_seven_one = D5; end
-		endcase
+    if (i_on) begin
+      case(i_hex)
+        4'h0: begin o_seven_ten = D0; o_seven_one = D0; end
+        4'h1: begin o_seven_ten = D0; o_seven_one = D1; end
+        4'h2: begin o_seven_ten = D0; o_seven_one = D2; end
+        4'h3: begin o_seven_ten = D0; o_seven_one = D3; end
+        4'h4: begin o_seven_ten = D0; o_seven_one = D4; end
+        4'h5: begin o_seven_ten = D0; o_seven_one = D5; end
+        4'h6: begin o_seven_ten = D0; o_seven_one = D6; end
+        4'h7: begin o_seven_ten = D0; o_seven_one = D7; end
+        4'h8: begin o_seven_ten = D0; o_seven_one = D8; end
+        4'h9: begin o_seven_ten = D0; o_seven_one = D9; end
+        4'ha: begin o_seven_ten = D1; o_seven_one = D0; end
+        4'hb: begin o_seven_ten = D1; o_seven_one = D1; end
+        4'hc: begin o_seven_ten = D1; o_seven_one = D2; end
+        4'hd: begin o_seven_ten = D1; o_seven_one = D3; end
+        4'he: begin o_seven_ten = D1; o_seven_one = D4; end
+        4'hf: begin o_seven_ten = D1; o_seven_one = D5; end
+      endcase
+    end
+    else begin
+      o_seven_ten = '1;
+      o_seven_one = '1;
+    end
 	end
 endmodule
